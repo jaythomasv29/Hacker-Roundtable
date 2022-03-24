@@ -1,8 +1,5 @@
-import {
-  createImageUrlBuilder,
-  createCurrentUserHook,
-  createClient,
-} from "next-sanity";
+import { createClient } from "next-sanity";
+import imageUrlBuilder from '@sanity/image-url'
 
 // https://www.nextjs.org/docs/basic-features/environment-variables
 export const config = {
@@ -18,4 +15,5 @@ export const sanityClient = createClient(config)
 /* Set up helpder function for generationg Image Urls with only the asset reference data in your documents
   https://www.sanity.io/docs/image-url
 */
-export const urlFor = (source) => createImageUrlBuilder(config).image(source);
+const builder = imageUrlBuilder(config)
+export const urlFor = (source) => builder.image(source);
