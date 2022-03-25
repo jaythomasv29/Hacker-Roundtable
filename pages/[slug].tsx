@@ -65,7 +65,7 @@ function Post({ post }: Props) {
   return (
     <main>
       <Header />
-      <div className="mx-auto max-w-7xl">
+      <div className="p-8 mx-auto max-w-7xl">
         <img
           className="h-40 w-full object-cover"
           src={urlFor(post.mainImage).url()!}
