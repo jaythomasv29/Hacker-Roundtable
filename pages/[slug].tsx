@@ -18,7 +18,14 @@ interface IFormInput {
 }
 
 function Post({ post }: Props) {
-  console.log(post)
+  const [comments, setComments] = useState([post.comments]) 
+  console.log(comments);
+
+  useEffect(() => {
+    setComments([post.comments])
+    console.log(comments)
+  }, [post.comments, post])
+  
   const [submitted, setSubmitted] = useState(false);
   const {
     register,
@@ -219,7 +226,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const query = `*[_type == 'post' && slug.current == 'does-nio-plan-to-make-a-comeback-in-2022'][0]{
+  const query = `*[_type == 'post' && slug.current == $slug][0]{
     _id,
     _createdAt,
     title,
